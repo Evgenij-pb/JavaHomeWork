@@ -16,6 +16,19 @@ public class Array {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i]+" ");
         }
+        //Определяем количество положительных элементов
+        //Находим сумму всех єлементов
+        int counter=0;
+        int sumAllelement=0;
+        for (int i = 0; i < array.length; i++){
+            if (array[i] > 0){
+                ++counter;
+            }
+            sumAllelement = sumAllelement + array[i];
+        }
+        System.out.print("\n\nКоличество положительных элементов в массиве: "+counter);
+        System.out.print("\nСумма всех элементов сассива: " + sumAllelement);
+
         // сортировка массива
         for (int i = 0; i < (array.length-1); i++){
             for (int j =0; j<(array.length-1-i); j++){
@@ -27,7 +40,7 @@ public class Array {
             }
         }
         //выводим отсортированный массив
-        System.out.println(" \nНаш массив после сортировки:");
+        System.out.println("\n\nНаш массив после сортировки:");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i]+" ");
         }
