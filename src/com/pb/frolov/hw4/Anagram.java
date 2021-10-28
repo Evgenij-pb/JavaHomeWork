@@ -59,7 +59,7 @@ public class Anagram {
             System.out.println("\nВведенные строки не являются анаграмматическими, " +
                     "\nт.к. имеют разное количество одинаковых букв.");
         }
-        else if(Arrays.equals(words,words)){
+        else if(Arrays.equals(words,words1)){
             System.out.println("\nВведенные строки являются анаграмматическими, " +
                     "\nт.к. слова одинаковой длинны, содержат одинаковые буквы.");
         }
