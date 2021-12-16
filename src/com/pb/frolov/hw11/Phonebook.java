@@ -72,6 +72,7 @@ public class Phonebook {
             System.out.println("2. Добавить контакт");
             System.out.println("3. Найти контакт");
             System.out.println("4. Удалить контакт");
+            System.out.println("5. Редактировать контакт");
 
             String choice = in.next();
             switch (choice) {
@@ -122,6 +123,26 @@ public class Phonebook {
                     ListToJsonToFile (objectMapper, phonebook, path);
 
                     break;
+
+                case "5": //--------------------Редактировать контакт----------------------------
+
+                    System.out.print("\nВведите ФИО: ");
+
+                    String editPersonName = in.next();
+                    for (Person p: phonebook) {
+                        if (p.getFullName().toLowerCase().contains(editPersonName.toLowerCase())) {
+                            System.out.println(p);
+                            System.out.print("Вы этот контакт хотите редактировать? (введите Да или Нет) ");
+                            if ("да".equals(in.next().toLowerCase())) {
+                                phonebook.set(phonebook.indexOf(p),createNewPerson());
+                                System.out.println("---Контакт изменен--------------------------------------------------\n");
+                                ListToJsonToFile (objectMapper, phonebook, path);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
                 default:
                     System.out.println("Недопустимое значение...\n");
             }
@@ -134,15 +155,16 @@ public class Phonebook {
         Scanner in = new Scanner(System.in);
 
         System.out.print("\nВведите ФИО: ");
+
         String name = in.nextLine();
 
-        System.out.print("\nВведите дату рождения (пример 2001-10-27): ");
+        System.out.print("Введите дату рождения (пример 2001-10-27): ");
         LocalDate birthDate = LocalDate.parse(in.nextLine());
 
-        System.out.print("\nВведите домашний адрес: ");
+        System.out.print("Введите домашний адрес: ");
         String address = in.nextLine();
 
-        System.out.println("Введите номер телефона (если номеров несколько разделите их пробелами): \n");
+        System.out.println("Введите номер телефона (если номеров несколько разделите их пробелами): ");
         List <String> phones = Arrays.asList(in.nextLine().split(" "));
 
         Person person =new Person(name, birthDate, phones, address,LocalDate.now());
@@ -176,7 +198,7 @@ public class Phonebook {
         }
     }
 
-    //Сорлирует List<Person> по фамилии
+    //Сортирует List<Person> по фамилии
     static void sortByName(List<Person> list){
         PersonNameComparator NameComparator = new PersonNameComparator();
         TreeSet<Person> sortList = new TreeSet<>(NameComparator);
