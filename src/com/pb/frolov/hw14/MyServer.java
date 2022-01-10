@@ -53,8 +53,8 @@ public class MyServer {
                     clientMessage = formatForDateNow.format(dateNow) + " " + userName + ": " + clientMessage;
 
                     for (Handler h : handlerList) {
-                        //h.send(clientMessage);
-                        out.println(clientMessage);
+                        h.send(clientMessage);
+                        //out.println(clientMessage);
                     }
                 }
             } catch (IOException e) {
@@ -64,9 +64,9 @@ public class MyServer {
             }
 
         }
-        /*private void send(String clientMessage) {
+        private void send(String clientMessage) {
             out.println(clientMessage);
-        }*/
+        }
     }
 
     public static void main(String[] args) throws Exception {
